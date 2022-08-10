@@ -6,8 +6,9 @@ bool ReaderCSV::read(const std::string& filename, std::vector<User>& users)
     try {
         std::string oneUser;
         std::ifstream infile(filename);
-        if (!infile.is_open())
+        if (!infile.is_open()) {
             return false;
+        }
         std::string line;
         line.reserve(200);//a little bit more than one user. For better experience may move it to settings.
         std::getline(infile, line);

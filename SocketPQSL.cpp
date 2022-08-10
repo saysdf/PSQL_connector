@@ -34,6 +34,8 @@ pqxx::result SocketPQSL::query(std::string strSQL)
 
 void SocketPQSL::connectDB()
 {
+    log("Try to create database: " + dbname);
+    createDB(dbname, user, password, port, host);
     try {
         socket = std::make_unique<pqxx::connection>("user = " + user + 
             " password = " + password + 
@@ -50,8 +52,6 @@ void SocketPQSL::connectDB()
     }
     catch (const pqxx::sql_error& e) {
         log(e);
-        log("Try to create database: " + dbname);
-        createDB(dbname, user, password, port, host);
         return;
     }
     return ;
