@@ -1,11 +1,13 @@
 #include "SocketPQSL.h"
 #include "ReaderCSV.h"
 #include "WriterUser.h"
-int main()
+int main(int argc, char** argv)
 {
+    if (argc !=3)
+        return 3;
     ReaderCSV r;
     std::vector<User> users;
-    if (r.read("C:\\Users\\Oleg\\Documents\\Dev\\UtopiaTest\\users.csv", users) == false)
+    if (r.read(argv[1], users) == false)
         return 1;
     
     SocketPQSL a("othertestg","postgres","123","5432","localhost");
@@ -14,7 +16,7 @@ int main()
     users.clear();
     a.readUsers("UsersTable",users);
     WriterUser w;
-    if (w.write("C:\\Users\\Oleg\\Documents\\Dev\\UtopiaTest\\users1.json", users) == false)
+    if (w.write(argv[2], users) == false)
         return 2;
     
     return 0;
