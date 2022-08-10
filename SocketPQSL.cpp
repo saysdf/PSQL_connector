@@ -200,22 +200,6 @@ void SocketPQSL::log(const std::string& str) const
     std::cerr << str << std::endl;
 }
 
-void SocketPQSL::printToQuery(int i, std::string& q)
-{
-    q += std::to_string(i) + ",";
-}
-
-void SocketPQSL::printToQuery(double i, std::string& q)
-{
-    q += std::to_string(i) + ",";
-}
-
-void SocketPQSL::printToQuery(std::string i, std::string& q)
-{
-    q += "\'" + i + "\',";
-}
-
-
 int SocketPQSL::createDB(const std::string& dbName, const std::string& user, const std::string& password, const std::string& port, const std::string& host)
 {
     try {
